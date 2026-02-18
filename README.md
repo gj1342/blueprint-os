@@ -30,7 +30,10 @@ flowchart TD
     BrainstormExisting --> ShapeSpec
     ShapeSpec --> DeployStandards[Deploy Standards]
     DeployStandards --> Execute[Execute with Agent]
-    Execute --> Review{Review Output}
+    Execute --> QA[Quality Assurance]
+    QA --> SEC[Security Audit]
+    SEC --> REV[Code Review]
+    REV --> Review{Review Output}
     Review -->|Standards need updating| DiscoverStandards
     Review -->|Next feature| Brainstorm
     Review -->|New capability needed| SearchSkillssh[Search skills.sh]
