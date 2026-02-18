@@ -25,14 +25,23 @@ flowchart TD
     Start([New Product or Feature]) --> IsNew{New or existing codebase?}
     IsNew -->|New product| Brainstorm[Brainstorm]
     IsNew -->|Existing codebase| DiscoverStandards[Discover Standards]
-    DiscoverStandards --> BrainstormExisting[Brainstorm]
-    Brainstorm --> ShapeSpec[Shape Spec]
-    BrainstormExisting --> ShapeSpec
-    ShapeSpec --> DeployStandards[Deploy Standards]
-    DeployStandards --> Execute[Execute with Agent]
-    Execute --> QA[Quality Assurance]
-    QA --> SEC[Security Audit]
-    SEC --> REV[Code Review]
+    DiscoverStandards --> Brainstorm
+
+    subgraph planning [Planning]
+        Brainstorm --> ShapeSpec[Shape Spec]
+        ShapeSpec --> DeployStandards[Deploy Standards]
+    end
+
+    subgraph execution [Execution]
+        DeployStandards --> Execute[Execute with Agent]
+    end
+
+    subgraph qualityGates [Quality Gates - Optional]
+        Execute --> QA[Quality Assurance]
+        QA --> SEC[Security Audit]
+        SEC --> REV[Code Review]
+    end
+
     REV --> Review{Review Output}
     Review -->|Standards need updating| DiscoverStandards
     Review -->|Next feature| Brainstorm
