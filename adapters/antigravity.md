@@ -30,6 +30,7 @@ your-project/
 │           └── SKILL.md
 ├── specs/
 ├── standards/
+├── references/
 └── ... your code
 ```
 
@@ -141,5 +142,6 @@ The agent will check [skills.sh](https://skills.sh) first (`npx skills add find-
 - The `description` field in each `SKILL.md` controls when Antigravity auto-triggers a skill — keep it specific with clear keywords
 - Brainstorm documents are saved to `specs/brainstorm-<name>.md` — reference them when shaping the spec
 - Standards files in `standards/` are plain markdown — reference them in your prompts or let the `deploying-standards` skill load them automatically
+- Reference designs and diagrams in `references/` — the spec lists applicable references; `deploying-standards` loads them before implementation
 - Spec files are saved to `specs/` — reference them in subsequent sessions to maintain continuity
 - For skills.sh integration, see [skills-sh.md](skills-sh.md)

@@ -19,7 +19,7 @@ The brainstorm document (`specs/brainstorm-<name>.md`) becomes the starting cont
 ## Workflow
 
 - [ ] Check for a brainstorm document in `specs/brainstorm-<name>.md` — load it if it exists
-- [ ] Load relevant standards from `standards/` if they exist
+- [ ] Load relevant standards from `standards/` and references from `references/` if they exist
 - [ ] Ask the shaping questions (see below) — skip any already answered in the brainstorm doc
 - [ ] Confirm answers with the user before proceeding
 - [ ] Write the spec file to `specs/<feature-name>.md`
@@ -58,6 +58,9 @@ Ask these questions in a conversational flow. Adapt wording to context, but cove
 **7. What standards apply?**
 - Which entries in `standards/` are relevant to this task?
 
+**8. What references apply?**
+- Are there design docs, flowcharts, or diagrams in `references/` that define this feature?
+
 ### Spec file format
 
 Save the completed spec to `specs/<feature-name>.md`:
@@ -94,6 +97,9 @@ Save the completed spec to `specs/<feature-name>.md`:
 ## Applicable standards
 - `standards/[file].md` — [which section]
 
+## Applicable references
+- `references/[file]` — [design, flowchart, diagram that defines this]
+
 ## Implementation notes
 [Any technical direction, decisions, or constraints to carry into execution]
 ```
@@ -108,6 +114,7 @@ After execution, consider running `quality-assurance`, `security-audit` (for aut
 
 - Run first if approach is undecided: `.agent/skills/brainstorming/SKILL.md`
 - Standards reference: `standards/README.md`
+- References index: `references/README.md`
 - Spec output directory: `specs/`
 - Deploy before executing: `.agent/skills/deploying-standards/SKILL.md`
 - Quality gates after execution: `.agent/skills/quality-assurance/SKILL.md`, `.agent/skills/security-audit/SKILL.md`, `.agent/skills/code-review/SKILL.md`

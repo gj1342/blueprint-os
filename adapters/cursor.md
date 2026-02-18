@@ -125,6 +125,7 @@ Run QA after implementation. Run SEC when changes touch auth, API, or sensitive 
 ## Notes
 
 - Standards files in `standards/` can also be referenced with `@standards/tech-stack.md`
+- Reference designs and diagrams in `references/` with `@references/checkout-flow.mmd` or `@references/agent-workflow/superpowers-link.md`
 - Brainstorm documents and spec files saved to `specs/` are readable the same way
 - The `.agent/` folder is invisible to most file trees by default — open it explicitly if needed
 - For skills.sh integration, see [skills-sh.md](skills-sh.md)

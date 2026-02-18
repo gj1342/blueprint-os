@@ -16,10 +16,11 @@ description: Injects relevant project standards into the agent's current context
 
 - [ ] Check if a spec exists for the current task in `specs/`
 - [ ] Read `standards/README.md` to see what standards files are available
-- [ ] Identify which standards are relevant to the current task
-- [ ] Read those standards files and internalize the content
-- [ ] Confirm to the user which standards were loaded
-- [ ] Proceed with the task using those standards actively applied
+- [ ] Read `references/README.md` to see what reference files exist
+- [ ] Identify which standards and references are relevant to the current task (spec may list applicable references)
+- [ ] Read those standards and reference files and internalize the content
+- [ ] Confirm to the user which standards and references were loaded
+- [ ] Proceed with the task using those standards and references actively applied
 
 ## Instructions
 
@@ -54,9 +55,13 @@ If the user specifies standards explicitly (e.g., "inject the API standards"):
 1. Locate the matching file in `standards/`
 2. Read it and confirm it is loaded
 
+### References
+
+If the spec lists "Applicable references" or the task involves UI flows, architecture, or design, check `references/` and load relevant files (design docs, flowcharts, diagrams). Reference `references/README.md` for the index.
+
 ### After loading
 
-State which standards were loaded, then proceed with the task. Keep standards active throughout the session — do not ignore them mid-task.
+State which standards and references were loaded, then proceed with the task. Keep standards active throughout the session — do not ignore them mid-task.
 
 If a decision during execution conflicts with a loaded standard, surface the conflict explicitly:
 
@@ -75,5 +80,6 @@ No standards files found. To create standards for this project, use the discover
 ## Resources
 
 - Standards directory: `standards/`
+- References directory: `references/`
 - Discover new standards: `.agent/skills/discovering-standards/SKILL.md`
 - Shape a spec first: `.agent/skills/shaping-specs/SKILL.md`

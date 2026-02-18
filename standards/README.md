@@ -109,6 +109,12 @@ The agent will read the appropriate files from this folder and apply them throug
 
 ---
 
+## Related
+
+For design docs, flowcharts, and diagrams that guide implementation, see `references/README.md`. Standards document patterns from your codebase; references are inputs (designs, flows) that define what to build.
+
+---
+
 ## Maintenance
 
 - Update standards files when patterns change in the codebase

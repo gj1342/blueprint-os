@@ -29,7 +29,7 @@ flowchart TD
 
     subgraph planning [Planning]
         Brainstorm --> ShapeSpec[Shape Spec]
-        ShapeSpec --> DeployStandards[Deploy Standards]
+        ShapeSpec --> DeployStandards[Deploy Standards & References]
     end
 
     subgraph execution [Execution]
@@ -60,7 +60,7 @@ flowchart TD
 | 2. Discover Standards | Extract patterns from your codebase into `standards/` files | `discovering-standards` |
 | 3. Brainstorm | Explore the problem, compare approaches, produce a design document | `brainstorming` |
 | 4. Shape Spec | Formalize the chosen direction into an implementation spec | `shaping-specs` |
-| 5. Deploy Standards | Inject relevant standards into the agent's context | `deploying-standards` |
+| 5. Deploy Standards | Inject relevant standards and references into the agent's context | `deploying-standards` |
 | 6. Execute | Run the agent with full context | *(your agent)* |
 | 7a. Quality Assurance *(optional)* | Add or update tests against acceptance criteria | `quality-assurance` |
 | 7b. Security Audit *(optional)* | Audit auth, API, or sensitive data changes | `security-audit` |
@@ -73,13 +73,14 @@ flowchart TD
 
 ### 1. Copy Blueprint OS into your project
 
-Place the `.agent/` folder and `standards/` folder at the root of your project:
+Place the `.agent/` folder, `standards/` folder, and `references/` folder at the root of your project:
 
 ```
 your-project/
 ├── .agent/
 │   └── skills/
 ├── standards/
+├── references/
 └── ... your code
 ```
 
@@ -132,7 +133,7 @@ Skills live in `.agent/skills/`. Each skill is a `SKILL.md` file the agent reads
 | Creating Skills | `.agent/skills/creating-skills/` | Find on skills.sh first, author from scratch as fallback |
 | Shaping Specs | `.agent/skills/shaping-specs/` | Formalize a chosen direction into an implementation spec |
 | Discovering Standards | `.agent/skills/discovering-standards/` | Extract codebase patterns into standards files |
-| Deploying Standards | `.agent/skills/deploying-standards/` | Inject relevant standards into agent context |
+| Deploying Standards | `.agent/skills/deploying-standards/` | Inject relevant standards and references into agent context |
 | Quality Assurance | `.agent/skills/quality-assurance/` | Add or update tests, validate against acceptance criteria |
 | Security Audit | `.agent/skills/security-audit/` | Audit auth, API, and sensitive data changes before merge |
 | Code Review | `.agent/skills/code-review/` | Final validation against spec and standards before merge |
@@ -196,9 +197,9 @@ The agent formalizes the brainstorm into `specs/user-auth.md` with scope, succes
 
 **Step 3: Execute**
 ```
-Read .agent/skills/deploying-standards/SKILL.md and inject standards for building a Next.js auth system
+Read .agent/skills/deploying-standards/SKILL.md and inject standards and references for building a Next.js auth system
 ```
-The agent loads any standards you have (or notes none exist yet) and proceeds to build with full context.
+The agent loads any standards and references you have (design docs, flowcharts if present) and proceeds to build with full context.
 
 ---
 
@@ -222,13 +223,13 @@ The agent loads your standards as constraints, explores integration approaches (
 ```
 Read .agent/skills/shaping-specs/SKILL.md and shape a spec using specs/brainstorm-payments.md
 ```
-Saves `specs/payments-feature.md` with relevant files mapped out, risks identified, and applicable standards referenced.
+Saves `specs/payments-feature.md` with relevant files mapped out, risks identified, and applicable standards and references.
 
 **Step 4: Build**
 ```
-Read .agent/skills/deploying-standards/SKILL.md and inject standards for implementing a payment service
+Read .agent/skills/deploying-standards/SKILL.md and inject standards and references for implementing a payment service
 ```
-Agent loads `api-design.md` and `error-handling.md`, then executes against the spec.
+Agent loads `api-design.md`, `error-handling.md`, and any references listed in the spec (e.g. payment flow diagram), then executes against the spec.
 
 ---
 
@@ -239,9 +240,9 @@ A button submits twice on slow connections. Approach is already clear.
 **Skip brainstorming entirely. Go straight to deployment.**
 
 ```
-Read .agent/skills/deploying-standards/SKILL.md and inject standards — I'm fixing a double-submit bug in the checkout form
+Read .agent/skills/deploying-standards/SKILL.md and inject standards and references — I'm fixing a double-submit bug in the checkout form
 ```
-Agent loads `component-patterns.md` and `error-handling.md`, then fixes the issue without any planning overhead.
+Agent loads `component-patterns.md`, `error-handling.md`, and any relevant references, then fixes the issue without any planning overhead.
 
 ---
 
@@ -276,10 +277,10 @@ You shaped a spec yesterday. Today you're back in a fresh chat with no context.
 
 ```
 Read specs/payments-feature.md — this is what we're building.
-Read .agent/skills/deploying-standards/SKILL.md and inject the relevant standards for continuing this work.
+Read .agent/skills/deploying-standards/SKILL.md and inject the relevant standards and references for continuing this work.
 ```
 
-The spec and standards files persist on disk. The agent picks up exactly where you left off, no re-explaining needed.
+The spec, standards, and references persist on disk. The agent picks up exactly where you left off, no re-explaining needed.
 
 ---
 
@@ -334,6 +335,9 @@ blueprint-os/
 │   └── (brainstorm docs and specs saved here)
 ├── standards/
 │   └── README.md
+├── references/
+│   ├── README.md
+│   └── agent-workflow/    # Meta: framework links (agent-os, superpowers, etc.)
 └── adapters/
     ├── cursor.md
     ├── antigravity.md
@@ -377,6 +381,12 @@ This format is compatible with Antigravity natively. For other tools, see the [a
 ## Standards
 
 Standards live in `standards/`. They are plain markdown files documenting the patterns, conventions, and architecture decisions of your specific project. See [standards/README.md](standards/README.md) for the format and conventions.
+
+---
+
+## References
+
+References live in `references/`. Design docs, flowcharts, diagrams, and other reference materials that guide implementation. The shaping-specs and deploying-standards skills load relevant references when planning and executing. See [references/README.md](references/README.md) for the index and conventions.
 
 ---
 

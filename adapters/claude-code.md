@@ -129,6 +129,7 @@ This project uses Blueprint OS for agent workflows.
 - Skills: `.agent/skills/`
 - Standards: `standards/`
 - Specs: `specs/` (brainstorm docs + implementation specs)
+- References: `references/` (design docs, flowcharts, diagrams)
 
 ### Workflow
 
@@ -153,6 +154,7 @@ Before merge (quality gates):
 ## Notes
 
 - Standards files in `standards/` can be referenced with `@standards/api-design.md` to include them directly in context
+- Reference designs and diagrams in `references/` with `@references/checkout-flow.mmd` or `@references/agent-workflow/superpowers-link.md`
 - Brainstorm documents (`specs/brainstorm-<name>.md`) and spec files (`specs/<feature>.md`) persist across sessions — always reference them when resuming work
 - The `@file` approach works in any Claude Code session without any setup
 - For skills.sh integration, see [skills-sh.md](skills-sh.md)
