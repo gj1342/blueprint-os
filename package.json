@@ -1,0 +1,33 @@
+{
+  "name": "blueprint-os",
+  "version": "1.0.0",
+  "description": "A portable, tool-agnostic AI agent workflow system built on skills and standards",
+  "bin": {
+    "blueprint-os": "./bin/blueprint-os.js"
+  },
+  "files": [
+    ".agent",
+    "standards",
+    "references",
+    "adapters",
+    "bin",
+    "lib"
+  ],
+  "keywords": [
+    "ai",
+    "agent",
+    "workflow",
+    "cursor",
+    "claude",
+    "standards",
+    "specs"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gj1342/blueprint-os"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

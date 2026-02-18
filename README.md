@@ -71,9 +71,17 @@ flowchart TD
 
 ## Quick Start
 
-### 1. Copy Blueprint OS into your project
+### 1. Install Blueprint OS into your project
 
-Place the `.agent/` folder, `standards/` folder, and `references/` folder at the root of your project:
+From your project directory:
+
+```bash
+npx blueprint-os init
+```
+
+This copies `.agent/`, `standards/`, `references/`, and `adapters/` into your project. No dependency is added to `package.json`.
+
+**Or copy manually:** Place the `.agent/` folder, `standards/` folder, and `references/` folder at the root of your project:
 
 ```
 your-project/
