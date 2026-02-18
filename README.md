@@ -140,6 +140,117 @@ These two skills are sequential, not interchangeable.
 
 ---
 
+## Scenarios
+
+Real-world walkthroughs showing exactly how Blueprint OS fits into your work.
+
+---
+
+### Scenario 1 — Brand new SaaS product
+
+You have an idea. No code exists yet.
+
+**Step 1: Brainstorm the product**
+```
+Read .agent/skills/brainstorming/SKILL.md and brainstorm a task management app for remote teams
+```
+The agent asks Socratic questions, presents 3 approaches (e.g., kanban vs. list-based vs. AI-prioritized), and saves the chosen direction to `specs/brainstorm-task-app.md`.
+
+**Step 2: Shape the first feature spec**
+```
+Read .agent/skills/shaping-specs/SKILL.md and shape a spec using specs/brainstorm-task-app.md
+```
+The agent formalizes the brainstorm into `specs/user-auth.md` with scope, success criteria, and implementation notes.
+
+**Step 3: Execute**
+```
+Read .agent/skills/deploying-standards/SKILL.md and inject standards for building a Next.js auth system
+```
+The agent loads any standards you have (or notes none exist yet) and proceeds to build with full context.
+
+---
+
+### Scenario 2 — New feature in a legacy codebase
+
+You've been handed a 3-year-old Express API and need to add a payments feature.
+
+**Step 1: Discover what conventions already exist**
+```
+Read .agent/skills/discovering-standards/SKILL.md and document the API design standards
+```
+The agent reads your existing routes, middleware, and error handling patterns, then saves `standards/api-design.md` and `standards/error-handling.md`.
+
+**Step 2: Brainstorm the payments feature within those constraints**
+```
+Read .agent/skills/brainstorming/SKILL.md and brainstorm a Stripe payments integration with the existing standards loaded
+```
+The agent loads your standards as constraints, explores integration approaches (webhook-first vs. sync, where to put the service layer, etc.), and saves `specs/brainstorm-payments.md`.
+
+**Step 3: Shape the spec**
+```
+Read .agent/skills/shaping-specs/SKILL.md and shape a spec using specs/brainstorm-payments.md
+```
+Saves `specs/payments-feature.md` with relevant files mapped out, risks identified, and applicable standards referenced.
+
+**Step 4: Build**
+```
+Read .agent/skills/deploying-standards/SKILL.md and inject standards for implementing a payment service
+```
+Agent loads `api-design.md` and `error-handling.md`, then executes against the spec.
+
+---
+
+### Scenario 3 — Quick bug fix
+
+A button submits twice on slow connections. Approach is already clear.
+
+**Skip brainstorming entirely. Go straight to deployment.**
+
+```
+Read .agent/skills/deploying-standards/SKILL.md and inject standards — I'm fixing a double-submit bug in the checkout form
+```
+Agent loads `component-patterns.md` and `error-handling.md`, then fixes the issue without any planning overhead.
+
+---
+
+### Scenario 4 — Adding a capability your agent doesn't have
+
+You want the agent to follow a strict TDD workflow but Blueprint OS has no skill for it.
+
+**Step 1: Check skills.sh first**
+```
+npx skills add find-skills
+```
+Then: `Use the find-skills skill to search for a test-driven development skill`
+
+Found: `obra/superpowers` has `test-driven-development`.
+
+**Step 2: Install it**
+```
+npx skills add obra/superpowers test-driven-development
+```
+Lands in `.agent/skills/test-driven-development/SKILL.md` — immediately available.
+
+**Step 3: Use it in your workflow**
+```
+Read .agent/skills/test-driven-development/SKILL.md and implement the payments service using TDD
+```
+
+---
+
+### Scenario 5 — Resuming work in a new session
+
+You shaped a spec yesterday. Today you're back in a fresh chat with no context.
+
+```
+Read specs/payments-feature.md — this is what we're building.
+Read .agent/skills/deploying-standards/SKILL.md and inject the relevant standards for continuing this work.
+```
+
+The spec and standards files persist on disk. The agent picks up exactly where you left off, no re-explaining needed.
+
+---
+
 ## Project Structure
 
 ```
@@ -213,4 +324,3 @@ Standards live in `standards/`. They are plain markdown files documenting the pa
 - **Composable** — skills are independent and combinable
 - **Iterative** — standards evolve with your codebase
 - **AI-first** — written for agents to read and follow, not for humans to memorize
-# blueprint-os
