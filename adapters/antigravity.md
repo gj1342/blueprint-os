@@ -20,7 +20,13 @@ your-project/
 │       │   └── SKILL.md
 │       ├── discovering-standards/
 │       │   └── SKILL.md
-│       └── deploying-standards/
+│       ├── deploying-standards/
+│       │   └── SKILL.md
+│       ├── quality-assurance/
+│       │   └── SKILL.md
+│       ├── security-audit/
+│       │   └── SKILL.md
+│       └── code-review/
 │           └── SKILL.md
 ├── specs/
 ├── standards/
@@ -42,6 +48,9 @@ Antigravity picks up skills by their `name` field (defined in YAML frontmatter).
 | "Shape a spec for X" / "Plan this feature" | `shaping-specs` |
 | "Document my standards" / "Extract patterns" | `discovering-standards` |
 | "Deploy standards" / "Inject context for X" | `deploying-standards` |
+| "Add tests" / "QA" / "Validate acceptance criteria" | `quality-assurance` |
+| "Security audit" / "SEC" / "Audit for vulnerabilities" | `security-audit` |
+| "Review" / "REV" / "Final review" / "Ready for merge" | `code-review` |
 
 ---
 
@@ -87,6 +96,24 @@ Shape a spec for [feature].
 
 ```
 Deploy standards relevant to building [task].
+```
+
+**After execution (quality gates):**
+
+```
+Add tests for [feature].
+```
+
+Then, if the change touches auth, API, or sensitive data:
+
+```
+Security audit for [feature].
+```
+
+Before merge:
+
+```
+Review [feature] before merge.
 ```
 
 **Adding a skill:**

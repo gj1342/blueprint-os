@@ -12,7 +12,7 @@ Create a rule file that tells Cursor's agent where to find Blueprint OS skills.
 
 ```markdown
 ---
-description: Blueprint OS skill loader. Apply when the user mentions a skill or asks to brainstorm, shape a spec, discover standards, deploy standards, or create a skill.
+description: Blueprint OS skill loader. Apply when the user mentions a skill or asks to brainstorm, shape a spec, discover standards, deploy standards, create a skill, add tests, security audit, or code review.
 globs:
 alwaysApply: false
 ---
@@ -28,6 +28,9 @@ Blueprint OS skills are located in `.agent/skills/`. When the user invokes a ski
 - **Shaping specs** → `.agent/skills/shaping-specs/SKILL.md`
 - **Discovering standards** → `.agent/skills/discovering-standards/SKILL.md`
 - **Deploying standards** → `.agent/skills/deploying-standards/SKILL.md`
+- **Quality assurance** → `.agent/skills/quality-assurance/SKILL.md`
+- **Security audit** → `.agent/skills/security-audit/SKILL.md`
+- **Code review** → `.agent/skills/code-review/SKILL.md`
 
 ## How to trigger
 
@@ -106,6 +109,16 @@ Cursor will include the file content in context and the agent will follow the sk
 ```
 @.agent/skills/creating-skills/SKILL.md — find or create a skill for [task]
 ```
+
+**Before merge (quality gates):**
+
+```
+@.agent/skills/quality-assurance/SKILL.md — add tests for [feature]
+@.agent/skills/security-audit/SKILL.md — audit [feature] for vulnerabilities
+@.agent/skills/code-review/SKILL.md — review [feature] before merge
+```
+
+Run QA after implementation. Run SEC when changes touch auth, API, or sensitive data. Run REV as the final gate.
 
 ---
 

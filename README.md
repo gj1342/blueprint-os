@@ -50,7 +50,10 @@ flowchart TD
 | 4. Shape Spec | Formalize the chosen direction into an implementation spec | `shaping-specs` |
 | 5. Deploy Standards | Inject relevant standards into the agent's context | `deploying-standards` |
 | 6. Execute | Run the agent with full context | *(your agent)* |
-| 7. Review & Refine | Update standards as patterns evolve | repeat |
+| 7a. Quality Assurance *(optional)* | Add or update tests against acceptance criteria | `quality-assurance` |
+| 7b. Security Audit *(optional)* | Audit auth, API, or sensitive data changes | `security-audit` |
+| 7c. Code Review *(optional)* | Validate against spec and standards before merge | `code-review` |
+| 8. Review & Refine | Update standards as patterns evolve | repeat |
 
 ---
 
@@ -118,6 +121,9 @@ Skills live in `.agent/skills/`. Each skill is a `SKILL.md` file the agent reads
 | Shaping Specs | `.agent/skills/shaping-specs/` | Formalize a chosen direction into an implementation spec |
 | Discovering Standards | `.agent/skills/discovering-standards/` | Extract codebase patterns into standards files |
 | Deploying Standards | `.agent/skills/deploying-standards/` | Inject relevant standards into agent context |
+| Quality Assurance | `.agent/skills/quality-assurance/` | Add or update tests, validate against acceptance criteria |
+| Security Audit | `.agent/skills/security-audit/` | Audit auth, API, and sensitive data changes before merge |
+| Code Review | `.agent/skills/code-review/` | Final validation against spec and standards before merge |
 
 **Community skills** from [skills.sh](https://skills.sh) install directly into `.agent/skills/` and work with Blueprint OS out of the box. Run `npx skills add <owner/repo>` to install any skill from the registry.
 
@@ -137,6 +143,20 @@ These two skills are sequential, not interchangeable.
 | Bug fix or small task | `shaping-specs` or skip to `deploying-standards` |
 
 **Brainstorming produces a design document** (`specs/brainstorm-<name>.md`). Spec shaping picks that up and formalizes it into an implementation spec (`specs/<feature-name>.md`). They're two steps in the same pipeline, not alternatives.
+
+---
+
+## When to use quality gates
+
+Quality gates run after implementation and before merge. They are optional — use them when rigor matters.
+
+| Gate | When to run |
+|------|-------------|
+| `quality-assurance` | After implementation; add or update tests against spec acceptance criteria |
+| `security-audit` | Required for auth flows, API endpoints, sensitive data handling |
+| `code-review` | Before merge; validates scope alignment and that SEC was run when required |
+
+Typical order: QA → SEC (if auth/API/sensitive) → REV.
 
 ---
 
@@ -251,6 +271,30 @@ The spec and standards files persist on disk. The agent picks up exactly where y
 
 ---
 
+### Scenario 6 — Before merging a feature
+
+Implementation is done. You want tests, a security check, and a final review before merge.
+
+**Step 1: Add tests**
+```
+Read .agent/skills/quality-assurance/SKILL.md and add tests for [feature]
+```
+Agent loads the spec, identifies acceptance criteria, adds or updates tests, records evidence.
+
+**Step 2: Security audit (if auth, API, or sensitive data)**
+```
+Read .agent/skills/security-audit/SKILL.md and audit [feature] for vulnerabilities
+```
+Agent runs through the security checklist, produces an audit report, blocks merge if Critical or High findings exist.
+
+**Step 3: Code review**
+```
+Read .agent/skills/code-review/SKILL.md and review [feature] before merge
+```
+Agent validates scope alignment, confirms SEC was run when required, and confirms readiness for merge.
+
+---
+
 ## Project Structure
 
 ```
@@ -266,7 +310,13 @@ blueprint-os/
 │       │   └── SKILL.md
 │       ├── discovering-standards/
 │       │   └── SKILL.md
-│       └── deploying-standards/
+│       ├── deploying-standards/
+│       │   └── SKILL.md
+│       ├── quality-assurance/
+│       │   └── SKILL.md
+│       ├── security-audit/
+│       │   └── SKILL.md
+│       └── code-review/
 │           └── SKILL.md
 ├── specs/
 │   └── (brainstorm docs and specs saved here)

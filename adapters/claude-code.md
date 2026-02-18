@@ -50,6 +50,24 @@ Read the file `.agent/skills/discovering-standards/SKILL.md` and follow all inst
 Read the file `.agent/skills/creating-skills/SKILL.md` and follow all instructions in it.
 ```
 
+**Create `.claude/commands/qa.md`:**
+
+```markdown
+Read the file `.agent/skills/quality-assurance/SKILL.md` and follow all instructions in it.
+```
+
+**Create `.claude/commands/security-audit.md`:**
+
+```markdown
+Read the file `.agent/skills/security-audit/SKILL.md` and follow all instructions in it.
+```
+
+**Create `.claude/commands/code-review.md`:**
+
+```markdown
+Read the file `.agent/skills/code-review/SKILL.md` and follow all instructions in it.
+```
+
 Then invoke them with:
 
 ```
@@ -58,6 +76,9 @@ Then invoke them with:
 /deploy-standards — I'm about to build a REST API
 /discover-standards — extract naming conventions
 /create-skill — find or create a skill for database migrations
+/qa — add tests for [feature]
+/security-audit — audit [feature] for vulnerabilities
+/code-review — review [feature] before merge
 ```
 
 ---
@@ -120,6 +141,11 @@ For new or complex features:
 For small tasks where the approach is clear:
 1. Run `/shape-spec` or skip straight to `/deploy-standards`
 2. Proceed with implementation
+
+Before merge (quality gates):
+1. Run `/qa` to add or update tests
+2. Run `/security-audit` when changes touch auth, API, or sensitive data
+3. Run `/code-review` as the final gate
 ```
 
 ---

@@ -102,9 +102,12 @@ Save the completed spec to `specs/<feature-name>.md`:
 
 After saving the spec, tell the agent (or user) to run the `deploying-standards` skill before executing, so relevant standards are loaded alongside the spec.
 
+After execution, consider running `quality-assurance`, `security-audit` (for auth, API, or sensitive data changes), and `code-review` before merge.
+
 ## Resources
 
 - Run first if approach is undecided: `.agent/skills/brainstorming/SKILL.md`
 - Standards reference: `standards/README.md`
 - Spec output directory: `specs/`
 - Deploy before executing: `.agent/skills/deploying-standards/SKILL.md`
+- Quality gates after execution: `.agent/skills/quality-assurance/SKILL.md`, `.agent/skills/security-audit/SKILL.md`, `.agent/skills/code-review/SKILL.md`
