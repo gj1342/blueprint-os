@@ -81,6 +81,8 @@ npx blueprint-os init
 
 This copies `.agent/`, `standards/`, `references/`, and `adapters/` into your project. No dependency is added to `package.json`. The `find-skills` skill is included so you can search the skills.sh registry without installing it separately.
 
+**Conditional copy:** If `standards/` or `references/` already contain project content (files beyond the template), they are preserved and not overwritten.
+
 **Or copy manually:** Place the `.agent/` folder, `standards/` folder, and `references/` folder at the root of your project:
 
 ```
@@ -131,6 +133,28 @@ your-project/
 2. If found: npx skills add <owner/repo> -a antigravity -y --copy
 3. If not found: ask your agent "Read .agent/skills/creating-skills/SKILL.md and create a skill for [task]"
 ```
+
+### Updating Blueprint OS
+
+To refresh core skills and adapters without touching your content:
+
+```bash
+npx blueprint-os@latest update
+```
+
+**What `update` does:**
+- Updates core skills in `.agent/skills/` (brainstorming, shaping-specs, discovering-standards, etc.)
+- Updates `adapters/`
+- Refreshes `references/agent-workflow/` and `references/README.md`
+- Refreshes `standards/README.md`
+
+**What `update` preserves:**
+- `specs/` — never touched
+- Your standards files (e.g. `api-design.md`, `error-handling.md`)
+- Your reference files (anything beyond `agent-workflow/`)
+- Community skills you installed from skills.sh
+
+**Conditional copy on `init`:** If you run `init` again, `standards/` and `references/` are preserved when they already contain project content (files beyond the shipped template).
 
 ---
 
