@@ -154,4 +154,4 @@ The `shaping-specs` skill will use the design document as its starting context, 
 - Design document output: `specs/`
 - Next step: `.agent/skills/shaping-specs/SKILL.md`
 - Existing standards (Mode 2): `standards/README.md`
-- Superpowers brainstorming reference: `npx skills add obra/superpowers`
+- Superpowers brainstorming reference: `npx skills add obra/superpowers -a antigravity -y --copy`

@@ -79,7 +79,7 @@ From your project directory:
 npx blueprint-os init
 ```
 
-This copies `.agent/`, `standards/`, `references/`, and `adapters/` into your project. No dependency is added to `package.json`.
+This copies `.agent/`, `standards/`, `references/`, and `adapters/` into your project. No dependency is added to `package.json`. The `find-skills` skill is included so you can search the skills.sh registry without installing it separately.
 
 **Or copy manually:** Place the `.agent/` folder, `standards/` folder, and `references/` folder at the root of your project:
 
@@ -87,6 +87,9 @@ This copies `.agent/`, `standards/`, `references/`, and `adapters/` into your pr
 your-project/
 ├── .agent/
 │   └── skills/
+│       ├── find-skills/      ← pre-installed
+│       ├── brainstorming/
+│       └── ...
 ├── standards/
 ├── references/
 └── ... your code
@@ -124,8 +127,8 @@ your-project/
 **Adding a new skill:**
 
 ```
-1. Browse https://skills.sh or run: npx skills add https://github.com/vercel-labs/skills --skill find-skills
-2. If found: npx skills add <owner/repo>
+1. Use the pre-installed find-skills: "Read .agent/skills/find-skills/SKILL.md and find a skill for [task]" — or browse https://skills.sh
+2. If found: npx skills add <owner/repo> -a antigravity -y --copy
 3. If not found: ask your agent "Read .agent/skills/creating-skills/SKILL.md and create a skill for [task]"
 ```
 
@@ -137,6 +140,7 @@ Skills live in `.agent/skills/`. Each skill is a `SKILL.md` file the agent reads
 
 | Skill | Path | Purpose |
 |---|---|---|
+| Find Skills | `.agent/skills/find-skills/` | Search the skills.sh registry for community skills (pre-installed) |
 | Brainstorming | `.agent/skills/brainstorming/` | Explore problems, compare approaches, produce a design document |
 | Creating Skills | `.agent/skills/creating-skills/` | Find on skills.sh first, author from scratch as fallback |
 | Shaping Specs | `.agent/skills/shaping-specs/` | Formalize a chosen direction into an implementation spec |
@@ -146,7 +150,7 @@ Skills live in `.agent/skills/`. Each skill is a `SKILL.md` file the agent reads
 | Security Audit | `.agent/skills/security-audit/` | Audit auth, API, and sensitive data changes before merge |
 | Code Review | `.agent/skills/code-review/` | Final validation against spec and standards before merge |
 
-**Community skills** from [skills.sh](https://skills.sh) install directly into `.agent/skills/` and work with Blueprint OS out of the box. Run `npx skills add <owner/repo>` to install any skill from the registry.
+**Community skills** from [skills.sh](https://skills.sh) install into `.agent/skills/` when you use `-a antigravity -y --copy`. The `--copy` flag creates real files so deleting `.agents` (created when Cursor is detected) won't break the skill.
 
 ---
 
@@ -258,17 +262,16 @@ Agent loads `component-patterns.md`, `error-handling.md`, and any relevant refer
 
 You want the agent to follow a strict TDD workflow but Blueprint OS has no skill for it.
 
-**Step 1: Check skills.sh first**
+**Step 1: Use the pre-installed find-skills**
 ```
-npx skills add https://github.com/vercel-labs/skills --skill find-skills
+Read .agent/skills/find-skills/SKILL.md and find a skill for test-driven development
 ```
-Then: `Use the find-skills skill to search for a test-driven development skill`
 
 Found: `obra/superpowers` has `test-driven-development`.
 
 **Step 2: Install it**
 ```
-npx skills add obra/superpowers test-driven-development
+npx skills add obra/superpowers --skill test-driven-development -a antigravity -y --copy
 ```
 Lands in `.agent/skills/test-driven-development/SKILL.md` — immediately available.
 
