@@ -1,6 +1,6 @@
 # Using Blueprint OS in Cursor
 
-Cursor reads rules from `.cursor/rules/` and skills from a skills directory. Blueprint OS skills live in `.agent/skills/` as portable markdown files. This guide shows how to connect them.
+Cursor reads rules from `.cursor/rules/` and skills from a skills directory. Blueprint OS skills live in `.agent/skills/` (singular) as portable markdown files. Cursor's native skills path is `.agents/skills/` (plural) — Blueprint OS uses `.agent/` and connects via rules and `@` references. Do not rename `.agent` to `.agents`; keep the Blueprint OS layout. This guide shows how to connect them.
 
 ---
 
@@ -23,6 +23,7 @@ Blueprint OS skills are located in `.agent/skills/`. When the user invokes a ski
 
 ## Available skills
 
+- **Find skills** → `.agent/skills/find-skills/SKILL.md` (pre-installed)
 - **Brainstorming** → `.agent/skills/brainstorming/SKILL.md`
 - **Creating skills** → `.agent/skills/creating-skills/SKILL.md`
 - **Shaping specs** → `.agent/skills/shaping-specs/SKILL.md`
@@ -128,4 +129,4 @@ Run QA after implementation. Run SEC when changes touch auth, API, or sensitive 
 - Reference designs and diagrams in `references/` with `@references/checkout-flow.mmd` or `@references/agent-workflow/superpowers-link.md`
 - Brainstorm documents and spec files saved to `specs/` are readable the same way
 - The `.agent/` folder is invisible to most file trees by default — open it explicitly if needed
-- For skills.sh integration, see [skills-sh.md](skills-sh.md)
+- For skills.sh integration, see [skills-sh.md](skills-sh.md). Use `-a antigravity -y --copy` when installing so skills land in `.agent/skills/` as real files. Without `--copy`, the CLI may symlink from `.agents/`, and deleting `.agents` breaks the skill.

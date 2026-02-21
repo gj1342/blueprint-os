@@ -1,6 +1,6 @@
 # Using Blueprint OS in Antigravity
 
-Blueprint OS uses the `.agent/skills/` structure natively — the same format Antigravity expects. No extra setup required.
+Blueprint OS uses the `.agent/skills/` structure natively — the same format Antigravity expects. When installing from skills.sh, use `-a antigravity` so skills land here. No extra setup required.
 
 ---
 
@@ -133,7 +133,7 @@ Use the `creating-skills` skill — it searches skills.sh first, then creates fr
 Find or create a skill for [task]
 ```
 
-The agent will check [skills.sh](https://skills.sh) first (`npx skills add https://github.com/vercel-labs/skills --skill find-skills`), install a community skill if available, or create a new one following `.agent/skills/creating-skills/SKILL.md`.
+The agent will check [skills.sh](https://skills.sh) first (`npx skills add https://github.com/vercel-labs/skills --skill find-skills -a antigravity -y --copy`), install a community skill if available, or create a new one following `.agent/skills/creating-skills/SKILL.md`.
 
 ---
 

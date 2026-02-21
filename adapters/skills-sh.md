@@ -1,16 +1,28 @@
 # Using skills.sh with Blueprint OS
 
-[skills.sh](https://skills.sh) is an open registry of reusable agent skills. Skills install directly into `.agent/skills/` — the same directory Blueprint OS uses — so they work together with no extra configuration.
+[skills.sh](https://skills.sh) is an open registry of reusable agent skills. Blueprint OS uses `.agent/skills/` (singular). The skills CLI installs to different paths per agent — use the Antigravity target so skills land in `.agent/skills/` and work with Blueprint OS.
+
+---
+
+## Paths: `.agent` vs `.agents`
+
+The skills CLI uses agent-specific paths. Cursor, Codex, and other "Universal" agents use `.agents/skills/` (plural). Antigravity uses `.agent/skills/` (singular). Blueprint OS uses `.agent/skills/` for all adapters — Cursor reads from there via rules and `@` references, not from `.agents`. Always target Antigravity when installing so skills land in the correct folder.
+
+---
+
+## Symlinks: use `--copy` for Cursor
+
+The CLI defaults to symlinks. One location holds the canonical copy; others point to it. If Cursor is detected, the canonical copy may live in `.agents/`. Deleting `.agents` then breaks the skill in `.agent/`. Use `--copy` so `.agent/skills/` gets real files. You can safely remove `.agents` if the CLI creates it.
 
 ---
 
 ## How it works
 
-```
-npx skills add <owner/repo>
+```bash
+npx skills add <owner/repo> -a antigravity -y --copy
 ```
 
-This command installs one or more skills from a GitHub repo into your project's `.agent/skills/` folder. Installed skills are immediately available to your agent as Blueprint OS skills.
+The `-a antigravity` flag installs to `.agent/skills/`, matching Blueprint OS. The `--copy` flag creates real files (not symlinks) so deleting `.agents` won't break the skill. The `-y` flag skips prompts. Installed skills are immediately available via `@.agent/skills/<skill-name>/SKILL.md`.
 
 Skills.sh supports Cursor, Antigravity, Claude Code, Codex, Cline, Windsurf, and more — the same tools Blueprint OS targets.
 
@@ -21,7 +33,7 @@ Skills.sh supports Cursor, Antigravity, Claude Code, Codex, Cline, Windsurf, and
 **Option 1 — Use the find-skills skill:**
 
 ```bash
-npx skills add https://github.com/vercel-labs/skills --skill find-skills
+npx skills add https://github.com/vercel-labs/skills --skill find-skills -a antigravity -y --copy
 ```
 
 This installs a meta-skill that can search the registry for you. Then ask your agent:
@@ -36,7 +48,7 @@ Visit [skills.sh](https://skills.sh) and search by keyword or browse by category
 
 **Option 3 — Search by GitHub org:**
 
-Many popular tool maintainers publish official skills:
+Many popular tool maintainers publish official skills. Append `-a antigravity -y` for Blueprint OS:
 
 | Publisher | Install command | What's inside |
 |---|---|---|
@@ -53,10 +65,10 @@ Many popular tool maintainers publish official skills:
 
 ```bash
 # Single repo (may contain multiple skills)
-npx skills add supabase/agent-skills
+npx skills add supabase/agent-skills -a antigravity -y --copy
 
 # Install a specific skill by name
-npx skills add obra/superpowers systematic-debugging
+npx skills add obra/superpowers --skill systematic-debugging -a antigravity -y --copy
 ```
 
 Skills land in `.agent/skills/<skill-name>/SKILL.md`. Open them to inspect what was installed.
@@ -105,7 +117,7 @@ If you've built a Blueprint OS skill that others would benefit from, you can pub
 
 1. Push your `.agent/skills/<skill-name>/` folder to a public GitHub repo
 2. Submit your skill at [skills.sh](https://skills.sh) (follow the site's submission process)
-3. Others can then install it with `npx skills add <your-github-username>/<repo>`
+3. Others can then install it with `npx skills add <your-github-username>/<repo> -a antigravity -y --copy`
 
 **Tip:** Structure your repo so each skill is its own folder at the root — that's the convention the `npx skills add` command expects.
 
@@ -117,18 +129,19 @@ These community skills complement Blueprint OS directly:
 
 | Skill | Install | Pairs with |
 |---|---|---|
-| `systematic-debugging` | `npx skills add obra/superpowers` | Any execution phase |
-| `writing-plans` | `npx skills add obra/superpowers` | `shaping-specs` |
-| `executing-plans` | `npx skills add obra/superpowers` | After `deploying-standards` |
-| `requesting-code-review` | `npx skills add obra/superpowers` | After execution |
-| `api-design-principles` | `npx skills add wshobson/agents` | `discovering-standards` for API projects |
-| `test-driven-development` | `npx skills add obra/superpowers` | Before writing new features |
+| `systematic-debugging` | `npx skills add obra/superpowers -a antigravity -y --copy` | Any execution phase |
+| `writing-plans` | `npx skills add obra/superpowers -a antigravity -y --copy` | `shaping-specs` |
+| `executing-plans` | `npx skills add obra/superpowers -a antigravity -y --copy` | After `deploying-standards` |
+| `requesting-code-review` | `npx skills add obra/superpowers -a antigravity -y --copy` | After execution |
+| `api-design-principles` | `npx skills add wshobson/agents -a antigravity -y --copy` | `discovering-standards` for API projects |
+| `test-driven-development` | `npx skills add obra/superpowers -a antigravity -y --copy` | Before writing new features |
 
 ---
 
 ## Notes
 
 - skills.sh skills use the same `SKILL.md` format as Blueprint OS — no conversion needed
+- Always use `-a antigravity -y --copy` when installing. `-a antigravity` puts skills in `.agent/skills/`. `--copy` creates real files (not symlinks) so deleting `.agents` won't break the skill. Without it, the CLI may symlink from `.agents/`, and removing `.agents` breaks `.agent/`
 - If `npx skills add` is not available, clone the repo and copy the skill folder manually into `.agent/skills/`
 - Community skills may not follow all Blueprint OS conventions — review before use
 - Pin to a specific commit if you need a stable, reproducible skill version

@@ -16,7 +16,7 @@ description: Acquires or creates Blueprint OS skills. Searches skills.sh registr
 
 - [ ] Clarify the skill's purpose — what task does it solve, and what are its triggers?
 - [ ] Search skills.sh for an existing community skill (see Instructions > Discovering on skills.sh)
-- [ ] If found: install with `npx skills add <owner/repo>` and evaluate fit
+- [ ] If found: install with `npx skills add <owner/repo> -a antigravity -y --copy` and evaluate fit
 - [ ] If it covers the need as-is: done — update the Skills Index in `README.md`
 - [ ] If it partially fits: customize it (see Instructions > Customizing an installed skill)
 - [ ] If nothing suitable found: create from scratch (see Instructions > Creating from scratch)
@@ -32,7 +32,7 @@ Before building anything, search the [skills.sh registry](https://skills.sh) —
 **Search via agent:**
 
 ```bash
-npx skills add https://github.com/vercel-labs/skills --skill find-skills
+npx skills add https://github.com/vercel-labs/skills --skill find-skills -a antigravity -y --copy
 ```
 
 Then ask the `find-skills` skill to search for what you need.
@@ -42,18 +42,18 @@ Then ask the `find-skills` skill to search for what you need.
 **Install a skill:**
 
 ```bash
-npx skills add <owner/repo>
+npx skills add <owner/repo> -a antigravity -y --copy
 ```
 
 Example:
 
 ```bash
-npx skills add supabase/agent-skills
-npx skills add vercel-labs/agent-skills
-npx skills add anthropics/skills
+npx skills add supabase/agent-skills -a antigravity -y --copy
+npx skills add vercel-labs/agent-skills -a antigravity -y --copy
+npx skills add anthropics/skills -a antigravity -y --copy
 ```
 
-Installed skills land in `.agent/skills/` automatically — compatible with Blueprint OS out of the box.
+The `-a antigravity` flag installs to `.agent/skills/`, matching Blueprint OS. The `--copy` flag creates real files (not symlinks) so deleting `.agents` won't break the skill when Cursor is detected.
 
 ### Customizing an installed skill
 
