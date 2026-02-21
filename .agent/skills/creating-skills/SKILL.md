@@ -32,7 +32,7 @@ Before building anything, search the [skills.sh registry](https://skills.sh) —
 **Search via agent:**
 
 ```bash
-npx skills add find-skills
+npx skills add https://github.com/vercel-labs/skills --skill find-skills
 ```
 
 Then ask the `find-skills` skill to search for what you need.

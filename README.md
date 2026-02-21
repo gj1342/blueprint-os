@@ -124,7 +124,7 @@ your-project/
 **Adding a new skill:**
 
 ```
-1. Browse https://skills.sh or run: npx skills add find-skills
+1. Browse https://skills.sh or run: npx skills add https://github.com/vercel-labs/skills --skill find-skills
 2. If found: npx skills add <owner/repo>
 3. If not found: ask your agent "Read .agent/skills/creating-skills/SKILL.md and create a skill for [task]"
 ```
@@ -260,7 +260,7 @@ You want the agent to follow a strict TDD workflow but Blueprint OS has no skill
 
 **Step 1: Check skills.sh first**
 ```
-npx skills add find-skills
+npx skills add https://github.com/vercel-labs/skills --skill find-skills
 ```
 Then: `Use the find-skills skill to search for a test-driven development skill`
 

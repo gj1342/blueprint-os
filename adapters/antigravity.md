@@ -133,7 +133,7 @@ Use the `creating-skills` skill — it searches skills.sh first, then creates fr
 Find or create a skill for [task]
 ```
 
-The agent will check [skills.sh](https://skills.sh) first (`npx skills add find-skills`), install a community skill if available, or create a new one following `.agent/skills/creating-skills/SKILL.md`.
+The agent will check [skills.sh](https://skills.sh) first (`npx skills add https://github.com/vercel-labs/skills --skill find-skills`), install a community skill if available, or create a new one following `.agent/skills/creating-skills/SKILL.md`.
 
 ---
 

@@ -21,7 +21,7 @@ Skills.sh supports Cursor, Antigravity, Claude Code, Codex, Cline, Windsurf, and
 **Option 1 — Use the find-skills skill:**
 
 ```bash
-npx skills add find-skills
+npx skills add https://github.com/vercel-labs/skills --skill find-skills
 ```
 
 This installs a meta-skill that can search the registry for you. Then ask your agent:
