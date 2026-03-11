@@ -16,25 +16,35 @@ Standards files are extracted from your codebase — not invented. They document
 
 ---
 
-## File naming
+## Structure
 
-Use lowercase, hyphen-separated names:
+Standards are organized by layer. Shared standards (cross-cutting) live at root; layer-specific standards go in subfolders:
 
 ```
 standards/
-├── tech-stack.md
-├── naming-conventions.md
-├── folder-structure.md
-├── component-patterns.md
-├── api-design.md
-├── data-models.md
-├── testing-approach.md
-├── error-handling.md
-├── authentication.md
-└── state-management.md
+├── tech-stack.md           # shared
+├── naming-conventions.md   # shared
+├── folder-structure.md     # shared
+├── testing-approach.md    # shared
+├── backend/
+│   ├── api-design.md
+│   ├── data-models.md
+│   ├── error-handling.md
+│   └── authentication.md
+├── frontend/
+│   ├── component-patterns.md
+│   └── state-management.md
+└── design/
+    ├── design-system.md
+    └── accessibility.md
 ```
 
-Name the file after the category it covers. Keep one category per file.
+**Backend** — API, data, auth, server-side patterns.  
+**Frontend** — Components, state, client-side patterns.  
+**Design** — UI system, accessibility, visual conventions.  
+**Root** — Tech stack, naming, folder structure, testing (apply across layers).
+
+Use lowercase, hyphen-separated names. Keep one category per file.
 
 ---
 
@@ -69,7 +79,7 @@ Known deviations from the standard and the reason they exist.
 
 ## Standards index
 
-When you add a new standards file, add it to the table below so agents can discover it:
+When you add a new standards file, add it to the table below so agents can discover it. Group by layer (shared, backend, frontend, design):
 
 | File | Covers |
 |---|---|

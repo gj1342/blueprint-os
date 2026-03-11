@@ -72,7 +72,7 @@ Then invoke them with:
 
 ```
 /brainstorm — explore the idea for [product or feature]
-/shape-spec — formalize the spec using specs/brainstorm-<name>.md
+/shape-spec — formalize the spec using specs/brainstorming/<name>/design.md
 /deploy-standards — I'm about to build a REST API
 /discover-standards — extract naming conventions
 /create-skill — find or create a skill for database migrations
@@ -89,7 +89,7 @@ Then invoke them with:
 
 ```
 /brainstorm — explore the idea for [product]
-/shape-spec — formalize specs/brainstorm-<name>.md into an implementation spec
+/shape-spec — formalize specs/brainstorming/<name>/design.md into an implementation spec
 /deploy-standards — inject relevant standards for [first task]
 ```
 
@@ -98,7 +98,7 @@ Then invoke them with:
 ```
 /discover-standards — extract patterns from the existing codebase
 /brainstorm — explore [feature] within the existing constraints
-/shape-spec — formalize specs/brainstorm-<name>.md
+/shape-spec — formalize specs/brainstorming/<name>/design.md
 /deploy-standards — inject standards before implementation
 ```
 
@@ -127,8 +127,8 @@ Add a section to your project's `CLAUDE.md` to make Blueprint OS always availabl
 This project uses Blueprint OS for agent workflows.
 
 - Skills: `.agent/skills/`
-- Standards: `standards/`
-- Specs: `specs/` (brainstorm docs + implementation specs)
+- Standards: `standards/` (shared at root; `backend/`, `frontend/`, `design/` for layer-specific)
+- Specs: `specs/brainstorming/<name>/design.md`, `specs/shaped-specs/<name>/spec.md`
 - References: `references/` (design docs, flowcharts, diagrams)
 
 ### Workflow
@@ -153,8 +153,8 @@ Before merge (quality gates):
 
 ## Notes
 
-- Standards files in `standards/` can be referenced with `@standards/api-design.md` to include them directly in context
+- Standards files in `standards/` can be referenced with `@standards/api-design.md` or `@standards/backend/api-design.md` to include them directly in context
 - Reference designs and diagrams in `references/` with `@references/checkout-flow.mmd` or `@references/agent-workflow/superpowers-link.md`
-- Brainstorm documents (`specs/brainstorm-<name>.md`) and spec files (`specs/<feature>.md`) persist across sessions — always reference them when resuming work
+- Brainstorm documents (`specs/brainstorming/<name>/design.md`) and spec files (`specs/shaped-specs/<name>/spec.md`) persist across sessions — always reference them when resuming work
 - The `@file` approach works in any Claude Code session without any setup
 - For skills.sh integration, see [skills-sh.md](skills-sh.md)

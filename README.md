@@ -113,7 +113,7 @@ your-project/
 
 ```
 1. Ask your agent: "Read .agent/skills/brainstorming/SKILL.md and brainstorm [product idea]"
-2. Ask your agent: "Read .agent/skills/shaping-specs/SKILL.md and shape a spec using specs/brainstorm-<name>.md"
+2. Ask your agent: "Read .agent/skills/shaping-specs/SKILL.md and shape a spec using specs/brainstorming/<name>/design.md"
 3. Ask your agent: "Read .agent/skills/deploying-standards/SKILL.md and inject relevant standards for [task]"
 ```
 
@@ -122,7 +122,7 @@ your-project/
 ```
 1. Ask your agent: "Read .agent/skills/discovering-standards/SKILL.md and document my codebase standards"
 2. Ask your agent: "Read .agent/skills/brainstorming/SKILL.md and brainstorm [feature] with the existing standards loaded"
-3. Ask your agent: "Read .agent/skills/shaping-specs/SKILL.md and shape a spec using specs/brainstorm-<name>.md"
+3. Ask your agent: "Read .agent/skills/shaping-specs/SKILL.md and shape a spec using specs/brainstorming/<name>/design.md"
 4. Ask your agent: "Read .agent/skills/deploying-standards/SKILL.md and inject relevant standards for [task]"
 ```
 
@@ -191,7 +191,7 @@ These two skills are sequential, not interchangeable.
 | New feature in a legacy codebase | `discovering-standards` → `brainstorming` → `shaping-specs` |
 | Bug fix or small task | `shaping-specs` or skip to `deploying-standards` |
 
-**Brainstorming produces a design document** (`specs/brainstorm-<name>.md`). Spec shaping picks that up and formalizes it into an implementation spec (`specs/<feature-name>.md`). They're two steps in the same pipeline, not alternatives.
+**Brainstorming produces a design document** (`specs/brainstorming/<name>/design.md`). Spec shaping picks that up and formalizes it into an implementation spec (`specs/shaped-specs/<name>/spec.md`). They're two steps in the same pipeline, not alternatives.
 
 ---
 
@@ -223,13 +223,13 @@ You have an idea. No code exists yet.
 ```
 Read .agent/skills/brainstorming/SKILL.md and brainstorm a task management app for remote teams
 ```
-The agent asks Socratic questions, presents 3 approaches (e.g., kanban vs. list-based vs. AI-prioritized), and saves the chosen direction to `specs/brainstorm-task-app.md`.
+The agent asks Socratic questions, presents 3 approaches (e.g., kanban vs. list-based vs. AI-prioritized), and saves the chosen direction to `specs/brainstorming/task-app/design.md`.
 
 **Step 2: Shape the first feature spec**
 ```
-Read .agent/skills/shaping-specs/SKILL.md and shape a spec using specs/brainstorm-task-app.md
+Read .agent/skills/shaping-specs/SKILL.md and shape a spec using specs/brainstorming/task-app/design.md
 ```
-The agent formalizes the brainstorm into `specs/user-auth.md` with scope, success criteria, and implementation notes.
+The agent formalizes the brainstorm into `specs/shaped-specs/user-auth/spec.md` with scope, success criteria, and implementation notes.
 
 **Step 3: Execute**
 ```
@@ -247,19 +247,19 @@ You've been handed a 3-year-old Express API and need to add a payments feature.
 ```
 Read .agent/skills/discovering-standards/SKILL.md and document the API design standards
 ```
-The agent reads your existing routes, middleware, and error handling patterns, then saves `standards/api-design.md` and `standards/error-handling.md`.
+The agent reads your existing routes, middleware, and error handling patterns, then saves `standards/backend/api-design.md` and `standards/backend/error-handling.md`.
 
 **Step 2: Brainstorm the payments feature within those constraints**
 ```
 Read .agent/skills/brainstorming/SKILL.md and brainstorm a Stripe payments integration with the existing standards loaded
 ```
-The agent loads your standards as constraints, explores integration approaches (webhook-first vs. sync, where to put the service layer, etc.), and saves `specs/brainstorm-payments.md`.
+The agent loads your standards as constraints, explores integration approaches (webhook-first vs. sync, where to put the service layer, etc.), and saves `specs/brainstorming/payments/design.md`.
 
 **Step 3: Shape the spec**
 ```
-Read .agent/skills/shaping-specs/SKILL.md and shape a spec using specs/brainstorm-payments.md
+Read .agent/skills/shaping-specs/SKILL.md and shape a spec using specs/brainstorming/payments/design.md
 ```
-Saves `specs/payments-feature.md` with relevant files mapped out, risks identified, and applicable standards and references.
+Saves `specs/shaped-specs/payments-feature/spec.md` with relevant files mapped out, risks identified, and applicable standards and references.
 
 **Step 4: Build**
 ```
@@ -311,7 +311,7 @@ Read .agent/skills/test-driven-development/SKILL.md and implement the payments s
 You shaped a spec yesterday. Today you're back in a fresh chat with no context.
 
 ```
-Read specs/payments-feature.md — this is what we're building.
+Read specs/shaped-specs/payments-feature/spec.md — this is what we're building.
 Read .agent/skills/deploying-standards/SKILL.md and inject the relevant standards and references for continuing this work.
 ```
 
@@ -367,9 +367,13 @@ blueprint-os/
 │       └── code-review/
 │           └── SKILL.md
 ├── specs/
-│   └── (brainstorm docs and specs saved here)
+│   ├── brainstorming/<name>/design.md
+│   └── shaped-specs/<name>/spec.md (+ quality-assurance.md, security-audit.md, code-review.md when run)
 ├── standards/
-│   └── README.md
+│   ├── README.md
+│   ├── backend/
+│   ├── frontend/
+│   └── design/
 ├── references/
 │   ├── README.md
 │   └── agent-workflow/    # Meta: framework links (agent-os, superpowers, etc.)
@@ -415,7 +419,7 @@ This format is compatible with Antigravity natively. For other tools, see the [a
 
 ## Standards
 
-Standards live in `standards/`. They are plain markdown files documenting the patterns, conventions, and architecture decisions of your specific project. See [standards/README.md](standards/README.md) for the format and conventions.
+Standards live in `standards/`. Shared standards (tech-stack, naming-conventions, folder-structure, testing-approach) are at root; layer-specific standards go in `backend/`, `frontend/`, and `design/`. See [standards/README.md](standards/README.md) for the format and conventions.
 
 ---
 

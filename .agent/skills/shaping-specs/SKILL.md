@@ -9,20 +9,20 @@ description: Shapes a structured spec for a feature or task by asking clarifying
 
 - User wants to plan a feature before implementation
 - User asks to "create a spec", "write a PRD", or "shape this idea"
-- A brainstorm document exists in `specs/brainstorm-<name>.md` and is ready to formalize
+- A brainstorm document exists in `specs/brainstorming/<name>/design.md` and is ready to formalize
 - User is starting work on a new feature, epic, or significant change where the approach is already decided
 
 **If the approach is still undecided or the problem is not fully understood, run `brainstorming` first.**
 Load `.agent/skills/brainstorming/SKILL.md` and complete that workflow before returning here.
-The brainstorm document (`specs/brainstorm-<name>.md`) becomes the starting context for spec shaping.
+The brainstorm document (`specs/brainstorming/<name>/design.md`) becomes the starting context for spec shaping.
 
 ## Workflow
 
-- [ ] Check for a brainstorm document in `specs/brainstorm-<name>.md` — load it if it exists
-- [ ] Load relevant standards from `standards/` and references from `references/` if they exist
+- [ ] Check for a brainstorm document in `specs/brainstorming/<name>/design.md` — load it if it exists
+- [ ] Load relevant standards from `standards/` (root and `backend/`, `frontend/`, `design/`) and references from `references/` if they exist
 - [ ] Ask the shaping questions (see below) — skip any already answered in the brainstorm doc
 - [ ] Confirm answers with the user before proceeding
-- [ ] Write the spec file to `specs/<feature-name>.md`
+- [ ] Write the spec file to `specs/shaped-specs/<name>/spec.md`
 - [ ] Summarize the spec and confirm it is ready to execute
 
 ## Instructions
@@ -56,14 +56,14 @@ Ask these questions in a conversational flow. Adapt wording to context, but cove
 - Are there edge cases or failure modes to account for?
 
 **7. What standards apply?**
-- Which entries in `standards/` are relevant to this task?
+- Which entries in `standards/` (root, backend/, frontend/, design/) are relevant to this task?
 
 **8. What references apply?**
 - Are there design docs, flowcharts, or diagrams in `references/` that define this feature?
 
 ### Spec file format
 
-Save the completed spec to `specs/<feature-name>.md`:
+Save the completed spec to `specs/shaped-specs/<name>/spec.md`:
 
 ```markdown
 # Spec: [Feature Name]
@@ -95,7 +95,7 @@ Save the completed spec to `specs/<feature-name>.md`:
 - [Risk or edge case]
 
 ## Applicable standards
-- `standards/[file].md` — [which section]
+- `standards/[layer/][file].md` — [which section]
 
 ## Applicable references
 - `references/[file]` — [design, flowchart, diagram that defines this]
@@ -115,6 +115,6 @@ After execution, consider running `quality-assurance`, `security-audit` (for aut
 - Run first if approach is undecided: `.agent/skills/brainstorming/SKILL.md`
 - Standards reference: `standards/README.md`
 - References index: `references/README.md`
-- Spec output directory: `specs/`
+- Spec output: `specs/shaped-specs/<name>/spec.md`
 - Deploy before executing: `.agent/skills/deploying-standards/SKILL.md`
 - Quality gates after execution: `.agent/skills/quality-assurance/SKILL.md`, `.agent/skills/security-audit/SKILL.md`, `.agent/skills/code-review/SKILL.md`

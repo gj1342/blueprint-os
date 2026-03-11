@@ -21,7 +21,7 @@ description: Explores a problem through Socratic questioning before any spec or 
 - [ ] Ask the brainstorming questions — one section at a time, conversationally
 - [ ] Present 2–3 alternative approaches with tradeoffs after gathering answers
 - [ ] Validate the preferred direction with the user
-- [ ] Save the design document to `specs/brainstorm-<name>.md`
+- [ ] Save the design document to `specs/brainstorming/<name>/design.md`
 - [ ] Hand off to `shaping-specs` with the design document as input
 
 ## Instructions
@@ -34,7 +34,7 @@ Pick the mode based on what the user is starting from:
 No codebase exists yet. Start with open-ended exploration. No standards to load. Focus on the problem, the user, and the product vision before any technical decisions.
 
 **Mode 2 — New feature in a legacy codebase**
-A codebase exists. Load `standards/` files first to understand existing patterns and constraints. Brainstorm within those constraints — what fits the existing architecture, what would require deviation and why.
+A codebase exists. Load `standards/` files (root and backend/, frontend/, design/) first to understand existing patterns and constraints. Brainstorm within those constraints — what fits the existing architecture, what would require deviation and why.
 
 **Mode 3 — New feature with loaded context**
 The user has specific files or modules in mind. Load those files before brainstorming. Keep exploration scoped to the relevant area.
@@ -96,7 +96,7 @@ Ask the user which direction resonates before writing the design document.
 
 ### Design document format
 
-Save to `specs/brainstorm-<name>.md`:
+Save to `specs/brainstorming/<name>/design.md`:
 
 ```markdown
 # Brainstorm: [Topic]
@@ -128,7 +128,7 @@ Save to `specs/brainstorm-<name>.md`:
 - [Anything still unresolved that shaping-specs needs to address]
 
 ## Context loaded
-- `standards/[file].md` — [what was relevant]
+- `standards/[layer/][file].md` — [what was relevant]
 - `path/to/file` — [why it was included]
 ```
 
@@ -137,7 +137,7 @@ Save to `specs/brainstorm-<name>.md`:
 After saving the design document, tell the user:
 
 ```
-Brainstorm complete. Load specs/brainstorm-<name>.md and run the shaping-specs skill to formalize this into an implementation spec.
+Brainstorm complete. Load specs/brainstorming/<name>/design.md and run the shaping-specs skill to formalize this into an implementation spec.
 ```
 
 The `shaping-specs` skill will use the design document as its starting context, so the shaping questions can be answered faster and with less ambiguity.
@@ -151,7 +151,7 @@ The `shaping-specs` skill will use the design document as its starting context, 
 
 ## Resources
 
-- Design document output: `specs/`
+- Design document output: `specs/brainstorming/<name>/design.md`
 - Next step: `.agent/skills/shaping-specs/SKILL.md`
 - Existing standards (Mode 2): `standards/README.md`
 - Superpowers brainstorming reference: `npx skills add obra/superpowers -a antigravity -y --copy`

@@ -14,7 +14,7 @@ description: Injects relevant project standards into the agent's current context
 
 ## Workflow
 
-- [ ] Check if a spec exists for the current task in `specs/`
+- [ ] Check if a spec exists for the current task in `specs/shaped-specs/<name>/spec.md`
 - [ ] Read `standards/README.md` to see what standards files are available
 - [ ] Read `references/README.md` to see what reference files exist
 - [ ] Identify which standards and references are relevant to the current task (spec may list applicable references)
@@ -26,19 +26,19 @@ description: Injects relevant project standards into the agent's current context
 
 ### Relevance mapping
 
-Match the task type to the standards files most likely to apply:
+Match the task type to the standards files most likely to apply. Load from the correct layer:
 
 | Task type | Standards to load |
 |---|---|
-| Building a UI component | `component-patterns`, `naming-conventions`, `tech-stack` |
-| Creating an API endpoint | `api-design`, `error-handling`, `naming-conventions` |
-| Writing database queries | `data-models`, `naming-conventions` |
-| Adding authentication | `authentication`, `error-handling` |
+| Building a UI component | `frontend/component-patterns`, `naming-conventions`, `tech-stack` |
+| Creating an API endpoint | `backend/api-design`, `backend/error-handling`, `naming-conventions` |
+| Writing database queries | `backend/data-models`, `naming-conventions` |
+| Adding authentication | `backend/authentication`, `backend/error-handling` |
 | Writing tests | `testing-approach`, `naming-conventions` |
 | Refactoring | `naming-conventions`, `folder-structure`, relevant domain |
 | General feature | `tech-stack`, `naming-conventions`, `folder-structure` |
 
-When in doubt, always load `tech-stack` and `naming-conventions` at minimum.
+When in doubt, always load `tech-stack` and `naming-conventions` at minimum. Shared standards are at root; layer-specific are in `backend/`, `frontend/`, `design/`.
 
 ### Auto-suggest mode
 
@@ -46,13 +46,13 @@ If the user says "deploy standards" without specifying which:
 
 1. Ask what they are about to build (one sentence)
 2. Use the relevance map above to select the appropriate files
-3. Load those files and confirm: "Loaded: `standards/api-design.md`, `standards/naming-conventions.md`"
+3. Load those files and confirm: "Loaded: `standards/backend/api-design.md`, `standards/naming-conventions.md`"
 
 ### Manual mode
 
 If the user specifies standards explicitly (e.g., "inject the API standards"):
 
-1. Locate the matching file in `standards/`
+1. Locate the matching file in `standards/` (check root and `backend/`, `frontend/`, `design/` subfolders)
 2. Read it and confirm it is loaded
 
 ### References
@@ -79,7 +79,7 @@ No standards files found. To create standards for this project, use the discover
 
 ## Resources
 
-- Standards directory: `standards/`
+- Standards directory: `standards/` (shared at root; `backend/`, `frontend/`, `design/` for layer-specific)
 - References directory: `references/`
 - Discover new standards: `.agent/skills/discovering-standards/SKILL.md`
 - Shape a spec first: `.agent/skills/shaping-specs/SKILL.md`

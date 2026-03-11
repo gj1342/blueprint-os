@@ -13,13 +13,13 @@ description: Validates changes against the spec and standards before merge. Use 
 
 ## Workflow
 
-- [ ] Load the spec from `specs/<feature-name>.md`
+- [ ] Load the spec from `specs/shaped-specs/<name>/spec.md`
 - [ ] Load relevant standards from `standards/`
 - [ ] Review changed code against the spec
 - [ ] Verify scope alignment — no out-of-scope changes, no missing in-scope items
 - [ ] Confirm security-audit was run if auth/API/sensitive data changed
 - [ ] Check documentation and spec status are updated
-- [ ] Produce review notes: pass for merge or list blocking issues
+- [ ] Save review to `specs/shaped-specs/<name>/code-review.md`
 
 ## Instructions
 
@@ -56,6 +56,8 @@ If the change touches authentication, API endpoints, or sensitive data:
 
 ### Output format
 
+Save to `specs/shaped-specs/<name>/code-review.md`:
+
 ```markdown
 ## Code review — [feature]
 
@@ -75,6 +77,7 @@ If the change touches authentication, API endpoints, or sensitive data:
 
 ## Resources
 
-- Spec directory: `specs/`
+- Spec: `specs/shaped-specs/<name>/spec.md`
+- Output: `specs/shaped-specs/<name>/code-review.md`
 - Standards: `standards/`
 - Security audit: `.agent/skills/security-audit/SKILL.md` (run before review when applicable)
