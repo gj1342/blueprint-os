@@ -79,7 +79,7 @@ Cursor will include the file content in context and the agent will follow the sk
 
 ```
 @.agent/skills/brainstorming/SKILL.md — brainstorm [product idea]
-@.agent/skills/shaping-specs/SKILL.md — shape a spec using specs/brainstorm-<name>.md
+@.agent/skills/shaping-specs/SKILL.md — shape a spec using specs/brainstorming/<name>/design.md
 @.agent/skills/deploying-standards/SKILL.md — inject standards for [task]
 ```
 
@@ -88,7 +88,7 @@ Cursor will include the file content in context and the agent will follow the sk
 ```
 @.agent/skills/discovering-standards/SKILL.md — document [area] standards
 @.agent/skills/brainstorming/SKILL.md — brainstorm [feature] with existing standards loaded
-@.agent/skills/shaping-specs/SKILL.md — shape a spec using specs/brainstorm-<name>.md
+@.agent/skills/shaping-specs/SKILL.md — shape a spec using specs/brainstorming/<name>/design.md
 @.agent/skills/deploying-standards/SKILL.md — inject standards for [task]
 ```
 
@@ -125,8 +125,8 @@ Run QA after implementation. Run SEC when changes touch auth, API, or sensitive 
 
 ## Notes
 
-- Standards files in `standards/` can also be referenced with `@standards/tech-stack.md`
+- Standards files in `standards/` can be referenced with `@standards/tech-stack.md` or `@standards/backend/api-design.md`
 - Reference designs and diagrams in `references/` with `@references/checkout-flow.mmd` or `@references/agent-workflow/superpowers-link.md`
-- Brainstorm documents and spec files saved to `specs/` are readable the same way
+- Brainstorm documents (`specs/brainstorming/<name>/design.md`) and spec files (`specs/shaped-specs/<name>/spec.md`) are readable the same way
 - The `.agent/` folder is invisible to most file trees by default — open it explicitly if needed
 - For skills.sh integration, see [skills-sh.md](skills-sh.md). Use `-a antigravity -y --copy` when installing so skills land in `.agent/skills/` as real files. Without `--copy`, the CLI may symlink from `.agents/`, and deleting `.agents` breaks the skill.

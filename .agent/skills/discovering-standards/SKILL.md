@@ -19,25 +19,29 @@ description: Extracts coding patterns, conventions, and architectural decisions 
 - [ ] Scan relevant files in that area
 - [ ] Identify recurring patterns, naming conventions, and architectural decisions
 - [ ] Draft a standards file and confirm with the user
-- [ ] Save to `standards/<category>.md`
+- [ ] Save to `standards/<layer>/<category>.md` or `standards/<category>.md` for shared
 - [ ] Update `standards/README.md` index if the file is new
 
 ## Instructions
 
 ### Discovery areas
 
-Approach one area at a time. Common areas to document:
+Approach one area at a time. Save to the appropriate layer:
 
-- **Tech stack** — languages, frameworks, libraries, versions
-- **Folder structure** — how the project is organized and why
-- **Naming conventions** — files, variables, components, routes, database columns
-- **Component patterns** — how UI components are structured and composed
-- **API design** — endpoint naming, request/response shapes, error handling
-- **Data models** — schema conventions, relationships, field naming
-- **Testing approach** — test file location, naming, tooling, coverage expectations
-- **Error handling** — how errors surface, are logged, and returned to clients
-- **State management** — how application state is structured and updated
-- **Authentication** — how auth is implemented and enforced
+| Area | Layer | Path |
+|------|-------|------|
+| Tech stack | shared | `standards/tech-stack.md` |
+| Folder structure | shared | `standards/folder-structure.md` |
+| Naming conventions | shared | `standards/naming-conventions.md` |
+| Testing approach | shared | `standards/testing-approach.md` |
+| API design | backend | `standards/backend/api-design.md` |
+| Data models | backend | `standards/backend/data-models.md` |
+| Error handling | backend | `standards/backend/error-handling.md` |
+| Authentication | backend | `standards/backend/authentication.md` |
+| Component patterns | frontend | `standards/frontend/component-patterns.md` |
+| State management | frontend | `standards/frontend/state-management.md` |
+| Design system | design | `standards/design/design-system.md` |
+| Accessibility | design | `standards/design/accessibility.md` |
 
 ### Extraction process
 
@@ -50,7 +54,7 @@ For each area:
 
 ### Standards file format
 
-Save to `standards/<category>.md`:
+Save to `standards/<layer>/<category>.md` (or `standards/<category>.md` for shared):
 
 ```markdown
 # [Category] Standards
@@ -90,18 +94,19 @@ Save to `standards/<category>.md`:
 
 ### File naming
 
-Use lowercase, hyphen-separated names that match the category:
+Use lowercase, hyphen-separated names. Place in the correct layer folder:
 
 ```
 standards/tech-stack.md
 standards/naming-conventions.md
-standards/api-design.md
-standards/component-patterns.md
+standards/backend/api-design.md
+standards/frontend/component-patterns.md
+standards/design/design-system.md
 ```
 
 ## Resources
 
-- Standards directory: `standards/`
+- Standards directory: `standards/` (shared at root, layer-specific in `backend/`, `frontend/`, `design/`)
 - Standards guide: `standards/README.md`
 - Next step for new feature work: `.agent/skills/brainstorming/SKILL.md` (brainstorm within discovered constraints)
 - Next step before implementation: `.agent/skills/deploying-standards/SKILL.md`

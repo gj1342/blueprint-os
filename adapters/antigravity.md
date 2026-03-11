@@ -29,7 +29,12 @@ your-project/
 │       └── code-review/
 │           └── SKILL.md
 ├── specs/
+│   ├── brainstorming/<name>/design.md
+│   └── shaped-specs/<name>/spec.md (+ quality-assurance.md, security-audit.md, code-review.md when run)
 ├── standards/
+│   ├── backend/
+│   ├── frontend/
+│   └── design/
 ├── references/
 └── ... your code
 ```
@@ -66,7 +71,7 @@ Brainstorm a [product idea] — I want to explore the problem and options before
 Then:
 
 ```
-Shape a spec using the brainstorm document in specs/brainstorm-<name>.md.
+Shape a spec using the brainstorm document in specs/brainstorming/<name>/design.md.
 ```
 
 **New feature in a legacy codebase:**
@@ -140,8 +145,8 @@ The agent will check [skills.sh](https://skills.sh) first (`npx skills add https
 ## Notes
 
 - The `description` field in each `SKILL.md` controls when Antigravity auto-triggers a skill — keep it specific with clear keywords
-- Brainstorm documents are saved to `specs/brainstorm-<name>.md` — reference them when shaping the spec
-- Standards files in `standards/` are plain markdown — reference them in your prompts or let the `deploying-standards` skill load them automatically
+- Brainstorm documents are saved to `specs/brainstorming/<name>/design.md` — reference them when shaping the spec
+- Standards files in `standards/` (root for shared, `backend/`, `frontend/`, `design/` for layer-specific) are plain markdown — reference them in your prompts or let the `deploying-standards` skill load them automatically
 - Reference designs and diagrams in `references/` — the spec lists applicable references; `deploying-standards` loads them before implementation
-- Spec files are saved to `specs/` — reference them in subsequent sessions to maintain continuity
+- Spec files are saved to `specs/shaped-specs/<name>/spec.md` — reference them in subsequent sessions to maintain continuity
 - For skills.sh integration, see [skills-sh.md](skills-sh.md)

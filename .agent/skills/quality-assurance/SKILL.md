@@ -14,11 +14,11 @@ description: Adds or updates tests to validate behavior against acceptance crite
 
 ## Workflow
 
-- [ ] Load the spec for the current task from `specs/<feature-name>.md`
+- [ ] Load the spec for the current task from `specs/shaped-specs/<name>/spec.md`
 - [ ] Identify acceptance criteria and success criteria from the spec
-- [ ] Load `standards/testing-approach.md` if it exists
+- [ ] Load `standards/testing-approach.md` if it exists (shared at root)
 - [ ] Add or update tests to cover the acceptance criteria
-- [ ] Record test coverage or evidence in the spec or a brief report
+- [ ] Save test evidence to `specs/shaped-specs/<name>/quality-assurance.md`
 - [ ] Flag auth, API, or sensitive data changes for security-audit if applicable
 
 ## Instructions
@@ -31,7 +31,7 @@ description: Adds or updates tests to validate behavior against acceptance crite
 | Backend | Unit, integration, API | Services, handlers, database |
 | Shared | Unit | Utilities, validation, data transforms |
 
-Follow project conventions in `standards/testing-approach.md` when present. If no testing standard exists, use common patterns for the stack (e.g., Vitest/Jest for unit, Playwright/Cypress for E2E).
+Follow project conventions in `standards/testing-approach.md` when present (shared at root). If no testing standard exists, use common patterns for the stack (e.g., Vitest/Jest for unit, Playwright/Cypress for E2E).
 
 ### Acceptance criteria mapping
 
@@ -44,10 +44,14 @@ For each unchecked success criterion in the spec:
 
 ### Evidence recording
 
-Add a section to the spec or append a note:
+Save to `specs/shaped-specs/<name>/quality-assurance.md`:
 
 ```markdown
-## Test evidence
+## Quality assurance — [feature]
+
+**Date:** [YYYY-MM-DD]
+
+### Test evidence
 - [Criterion X]: Covered by `path/to/test.ts` — passes
 - [Criterion Y]: Covered by integration test in `path/to/integration.test.ts`
 ```
@@ -63,6 +67,7 @@ If the implementation touches authentication, API security, or sensitive data ha
 
 ## Resources
 
-- Spec directory: `specs/`
-- Testing standards: `standards/testing-approach.md`
+- Spec: `specs/shaped-specs/<name>/spec.md`
+- Output: `specs/shaped-specs/<name>/quality-assurance.md`
+- Testing standards: `standards/testing-approach.md` (shared)
 - Next step: `.agent/skills/security-audit/SKILL.md` (for auth/API/sensitive) or `.agent/skills/code-review/SKILL.md`

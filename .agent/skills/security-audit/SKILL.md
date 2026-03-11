@@ -14,11 +14,11 @@ description: Audits code changes for security vulnerabilities and data exposure.
 
 ## Workflow
 
-- [ ] Load the spec from `specs/<feature-name>.md`
+- [ ] Load the spec from `specs/shaped-specs/<name>/spec.md`
 - [ ] Load changed files and identify security-relevant code
 - [ ] Run through the security checklist (frontend and backend as applicable)
 - [ ] Assign severity to each finding (Critical, High, Medium, Low)
-- [ ] Produce audit report inline or in `specs/<feature-name>-security-audit.md`
+- [ ] Save audit report to `specs/shaped-specs/<name>/security-audit.md`
 - [ ] Block merge for Critical and High; document Medium and Low for resolution
 
 ## Instructions
@@ -84,7 +84,7 @@ Run security-audit before merge when the change involves:
 
 ### Audit report format
 
-Save to `specs/<feature-name>-security-audit.md` or append to the spec:
+Save to `specs/shaped-specs/<name>/security-audit.md`:
 
 ```markdown
 ## Security audit — [date]
@@ -110,6 +110,7 @@ Save to `specs/<feature-name>-security-audit.md` or append to the spec:
 
 ## Resources
 
-- Spec directory: `specs/`
-- Standards: `standards/authentication.md`, `standards/api-design.md` if present
+- Spec: `specs/shaped-specs/<name>/spec.md`
+- Output: `specs/shaped-specs/<name>/security-audit.md`
+- Standards: `standards/backend/authentication.md`, `standards/backend/api-design.md` if present
 - Next step: `.agent/skills/code-review/SKILL.md`
